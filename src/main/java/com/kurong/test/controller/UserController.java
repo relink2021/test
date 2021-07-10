@@ -33,6 +33,7 @@ public class UserController {
 
     @RequestMapping("/register")
     public String addUser(@RequestBody User user) {
+        System.out.println("注册中");
         user.setRole("普通用户");
         user.setState(true);
         int i = userdao.addUser(user);
