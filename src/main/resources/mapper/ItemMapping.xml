@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kurong.test.dao.ItemDao">
+    <resultMap id="itemMap" type="com.kurong.test.bean.Item">
+        <id column="id" property="id"></id>
+        <result column="logo_img" property="logo_img"></result>
+        <result column="detail_img" property="detail_img"></result>
+        <result column="detail_top" property="detail_top"></result>
+        <result column="detail_info1" property="detail_info1"></result>
+        <result column="detail_info2" property="detail_info2"></result>
+        <result column="price" property="price"></result>
+        <result column="num" property="num"></result>
+    </resultMap>
+    <select id="getItems" resultMap="itemMap">
+        SELECT * from shopcar;
+    </select>
+</mapper>
