@@ -2,17 +2,53 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kurong.test.dao.ItemDao">
-    <resultMap id="itemMap" type="com.kurong.test.bean.Item">
-        <id column="id" property="id"></id>
-        <result column="logo_img" property="logo_img"></result>
-        <result column="detail_img" property="detail_img"></result>
-        <result column="detail_top" property="detail_top"></result>
-        <result column="detail_info1" property="detail_info1"></result>
-        <result column="detail_info2" property="detail_info2"></result>
-        <result column="price" property="price"></result>
-        <result column="num" property="num"></result>
-    </resultMap>
-    <select id="getItems" resultMap="itemMap">
-        SELECT * from shopcar;
+
+    <select id="getAllItem" resultType="com.kurong.test.bean.Item">
+        SELECT * FROM item
+        <if test="item_name != null">
+            <if test="sub_kind != null">
+            WHERE item_name like #{item_name} AND sub_kind =#{sub_kind}
+            ORDER BY item_name
+            </if>
+            <if test="sub_kind == null">
+            WHERE item_name like #{item_name}
+            ORDER BY item_name
+            </if>
+        </if>
+        LIMIT #{pageStart},#{pageSize}
     </select>
+
+    <select id="getItemCounts" resultType="java.lang.Integer">
+        SELECT count(*) FROM item
+        <if test = "sub_kind != null" >
+            WHERE item_name like #{item_name} AND sub_kind =#{sub_kind}
+        </if>
+        <if test = "sub_kind == null" >
+            WHERE item_name like #{item_name}
+        </if>
+    </select>
+
+    <select id="getItemMessage" resultType="com.kurong.test.bean.Item">
+        SELECT * FROM item WHERE
+        item_name=#{item_name}
+    </select>
+
+    <insert id="releaseItem">
+        INSERT INTO item
+        (username,item_name,fineness,main_kind,sub_kind,price,amount,comment,contact)
+        VALUE
+        (#{username},#{item_name},#{fineness},#{main_kind},#{sub_kind},#{price},#{amount},#{comment},#{contact})
+    </insert>
+    
+    <delete id="deleteItem">
+        DELETE FROM item WHERE item_name=#{item_name}
+    </delete>
+
+    <update id="editItem">
+        UPDATE item
+        SET item_name=#{item_name}, fineness=#{fineness}, main_kind=#{main_kind}, sub_kind=#{sub_kind}, price=#{price},
+            amount=#{amount}, comment=#{comment}
+        WHERE item_name=#{item_name}
+    </update>
+
 </mapper>

@@ -2,114 +2,126 @@ package com.kurong.test.bean;
 
 // 商品信息
 public class Item {
-    private String id;
-    private String logo_img;
-    private String logo_name;
-    private String detail_img;
-    private String detail_top;
-    private String detail_info1;
-    private String detail_info2;
-    private String price;
-    private int num;
+    private String username;
+    private String item_name;
+    private String fineness;
+    private String main_kind;
+    private String sub_kind;
+    private double price;
+    private int amount;
+    private String comment;
+    private String contact;
+    private String item_img;
 
     public Item() {
     }
 
-    public Item(String logo_img, String logo_name, String detail_img, String detail_top, String detail_info1, String detail_info2, String price, int num) {
-        this.logo_img = logo_img;
-        this.logo_name = logo_name;
-        this.detail_img = detail_img;
-        this.detail_top = detail_top;
-        this.detail_info1 = detail_info1;
-        this.detail_info2 = detail_info2;
+    public Item(String username, String item_name, String fineness, String main_kind, String sub_kind, double price, int amount, String comment, String contact, String item_img) {
+        this.username = username;
+        this.item_name = item_name;
+        this.fineness = fineness;
+        this.main_kind = main_kind;
+        this.sub_kind = sub_kind;
         this.price = price;
-        this.num = num;
+        this.amount = amount;
+        this.comment = comment;
+        this.contact = contact;
+        this.item_img = item_img;
     }
 
-    public String getId() {
-        return id;
+    public String getUsername() {
+        return username;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getLogo_img() {
-        return logo_img;
+    public String getItem_name() {
+        return item_name;
     }
 
-    public void setLogo_img(String logo_img) {
-        this.logo_img = logo_img;
+    public void setItem_name(String item_name) {
+        this.item_name = item_name;
     }
 
-    public String getLogo_name() {
-        return logo_name;
+    public String getFineness() {
+        return fineness;
     }
 
-    public void setLogo_name(String logo_name) {
-        this.logo_name = logo_name;
+    public void setFineness(String fineness) {
+        this.fineness = fineness;
     }
 
-    public String getDetail_img() {
-        return detail_img;
+    public String getMain_kind() {
+        return main_kind;
     }
 
-    public void setDetail_img(String detail_img) {
-        this.detail_img = detail_img;
+    public void setMain_kind(String main_kind) {
+        this.main_kind = main_kind;
     }
 
-    public String getDetail_top() {
-        return detail_top;
+    public String getSub_kind() {
+        return sub_kind;
     }
 
-    public void setDetail_top(String detail_top) {
-        this.detail_top = detail_top;
+    public void setSub_kind(String sub_kind) {
+        this.sub_kind = sub_kind;
     }
 
-    public String getDetail_info1() {
-        return detail_info1;
-    }
-
-    public void setDetail_info1(String detail_info1) {
-        this.detail_info1 = detail_info1;
-    }
-
-    public String getDetail_info2() {
-        return detail_info2;
-    }
-
-    public void setDetail_info2(String detail_info2) {
-        this.detail_info2 = detail_info2;
-    }
-
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public int getNum() {
-        return num;
+    public int getAmount() {
+        return amount;
     }
 
-    public void setNum(int num) {
-        this.num = num;
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public String getItem_img() {
+        return item_img;
+    }
+
+    public void setItem_img(String item_img) {
+        this.item_img = item_img;
     }
 
     @Override
     public String toString() {
         return "Item{" +
-                "id='" + id + '\'' +
-                ", logo_img='" + logo_img + '\'' +
-                ", logo_name='" + logo_name + '\'' +
-                ", detail_img='" + detail_img + '\'' +
-                ", detail_top='" + detail_top + '\'' +
-                ", detail_info1='" + detail_info1 + '\'' +
-                ", detail_info2='" + detail_info2 + '\'' +
-                ", price='" + price + '\'' +
-                ", num=" + num +
+                "username='" + username + '\'' +
+                ", item_name='" + item_name + '\'' +
+                ", fineness='" + fineness + '\'' +
+                ", main_kind='" + main_kind + '\'' +
+                ", sub_kind='" + sub_kind + '\'' +
+                ", price=" + price +
+                ", amount=" + amount +
+                ", comment='" + comment + '\'' +
+                ", contact='" + contact + '\'' +
+                ", item_img='" + item_img + '\'' +
                 '}';
     }
 }

@@ -20,30 +20,79 @@ public class UserController {
 
     @RequestMapping("/allUser")
     public String getUserList(QueryInfo queryInfo) {
-        int numbers = userdao.getUserCounts("%" + queryInfo.getQuery() + "%");
+        // 获取查询信息
+        int number = userdao.getUserCounts("%" + queryInfo.getQuery() + "%");
         int pageStart = (queryInfo.getPageNum() - 1) * queryInfo.getPageSize();
 
         List<User> users = userdao.getAllUser("%" + queryInfo.getQuery() + "%", pageStart, queryInfo.getPageSize());
         HashMap<String, Object> res = new HashMap<>();
-        res.put("numbers", numbers);
+        res.put("number", number);
         res.put("data", users);
-        String res_string = JSON.toJSONString(res);
-        return res_string;
+        return JSON.toJSONString(res);
     }
 
     @RequestMapping("/register")
     public String addUser(@RequestBody User user) {
-        System.out.println("注册中");
         user.setRole("普通用户");
+        user.setAddress(null);
+        user.setReal_name(null);
+        user.setBalance(1000.0);
+        user.setSex("男");
         user.setState(true);
         int i = userdao.addUser(user);
-        System.out.println("注册");
         return i > 0 ? "success" : "error";
     }
 
-    @RequestMapping("/CheckUser")
+    @RequestMapping("/addUser")
+    public String addUserByAdmin(@RequestBody User user) {
+        user.setAddress(null);
+        user.setReal_name(null);
+        user.setBalance(1000.0);
+        user.setSex("男");
+        user.setState(true);
+        int i = userdao.addUser(user);
+        return i > 0 ? "success" : "error";
+    }
+
+    @RequestMapping("/updateMessage")
+    public String updateMessage(@RequestBody User user){
+        int i = userdao.updateMessage(user);
+        return i > 0 ? "success" : "error";
+    }
+
+    @RequestMapping("/checkUser")
     public String checkUsername(@RequestBody User user){
         User us = userdao.checkUsername(user.getUsername());
-        return us == null ? "error" : "ok";
+        return us == null ? "ok" : "error";
+    }
+
+    @RequestMapping("/showMessage")
+    public String showMessage(@RequestBody User user){
+        User us = userdao.checkUsername(user.getUsername());
+        return JSON.toJSONString(us);
+    }
+
+    @RequestMapping("/deleteUser")
+    public String deleteUser(String username){
+        int i = userdao.deleteUser(username);
+        return i > 0 ? "success" : "error";
+    }
+
+    @RequestMapping("/getUpdate")
+    public String getUpdateUser(String username){
+        User us = userdao.checkUsername(username);
+        return JSON.toJSONString(us);
+    }
+
+    @RequestMapping("/updateUser")
+    public String updateUser(@RequestBody User user){
+        int i = userdao.updateUser(user);
+        return i > 0 ? "success" : "error";
+    }
+
+    @RequestMapping("/reset")
+    public String resetPassWord(@RequestBody User user){
+        int i = userdao.resetPassWord(user);
+        return i > 0 ? "success" : "error";
     }
 }
