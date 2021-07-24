@@ -8,11 +8,21 @@
         <if test="item_name != null">
             <if test="sub_kind != null">
             WHERE item_name like #{item_name} AND sub_kind =#{sub_kind}
-            ORDER BY item_name
             </if>
             <if test="sub_kind == null">
             WHERE item_name like #{item_name}
-            ORDER BY item_name
+            </if>
+            <if test="filter == 0">
+                ORDER BY item_name
+            </if>
+            <if test="filter == 1">
+                ORDER BY price desc
+            </if>
+            <if test="filter == 2">
+                ORDER BY price
+            </if>
+            <if test="filter == 3">
+                ORDER BY amount desc
             </if>
         </if>
         LIMIT #{pageStart},#{pageSize}

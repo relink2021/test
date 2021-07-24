@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface ItemDao {
-        public List<Item> getAllItem(@Param("item_name") String item_name, @Param("sub_kind") String sub_kind, @Param("pageStart") int pageStart, @Param("pageSize") int pageSize);
+        public List<Item> getAllItem(@Param("item_name") String item_name, @Param("sub_kind") String sub_kind, @Param("pageStart") int pageStart, @Param("pageSize") int pageSize, @Param("filter") int filter);
         public int releaseItem(Item item);
         public int getItemCounts(@Param("item_name") String item_name, @Param("sub_kind") String sub_kind);
         public Item getItemMessage(@Param("item_name") String item_name);
