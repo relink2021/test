@@ -9,14 +9,14 @@ public class Item {
     private String sub_kind;
     private double price;
     private int amount;
-    private String comment;
+    private String item_detail;
     private String contact;
     private String item_img;
 
     public Item() {
     }
 
-    public Item(String username, String item_name, String fineness, String main_kind, String sub_kind, double price, int amount, String comment, String contact, String item_img) {
+    public Item(String username, String item_name, String fineness, String main_kind, String sub_kind, double price, int amount, String item_detail, String contact, String item_img) {
         this.username = username;
         this.item_name = item_name;
         this.fineness = fineness;
@@ -24,7 +24,7 @@ public class Item {
         this.sub_kind = sub_kind;
         this.price = price;
         this.amount = amount;
-        this.comment = comment;
+        this.item_detail = item_detail;
         this.contact = contact;
         this.item_img = item_img;
     }
@@ -85,12 +85,12 @@ public class Item {
         this.amount = amount;
     }
 
-    public String getComment() {
-        return comment;
+    public String getItem_detail() {
+        return item_detail;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setItem_detail(String item_detail) {
+        this.item_detail = item_detail;
     }
 
     public String getContact() {
@@ -119,7 +119,7 @@ public class Item {
                 ", sub_kind='" + sub_kind + '\'' +
                 ", price=" + price +
                 ", amount=" + amount +
-                ", comment='" + comment + '\'' +
+                ", item_detail='" + item_detail + '\'' +
                 ", contact='" + contact + '\'' +
                 ", item_img='" + item_img + '\'' +
                 '}';

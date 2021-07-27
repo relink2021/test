@@ -45,9 +45,9 @@
 
     <insert id="releaseItem">
         INSERT INTO item
-        (username,item_name,fineness,main_kind,sub_kind,price,amount,comment,contact,item_img)
+        (username,item_name,fineness,main_kind,sub_kind,price,amount,item_detail,contact,item_img)
         VALUE
-        (#{username},#{item_name},#{fineness},#{main_kind},#{sub_kind},#{price},#{amount},#{comment},#{contact},#{item_img})
+        (#{username},#{item_name},#{fineness},#{main_kind},#{sub_kind},#{price},#{amount},#{item_detail},#{contact},#{item_img})
     </insert>
     
     <delete id="deleteItem">
@@ -57,7 +57,7 @@
     <update id="editItem">
         UPDATE item
         SET item_name=#{item_name}, fineness=#{fineness}, main_kind=#{main_kind}, sub_kind=#{sub_kind}, price=#{price},
-            amount=#{amount}, comment=#{comment}
+            amount=#{amount}, item_detail=#{item_detail}
         WHERE item_name=#{item_name}
     </update>
 
