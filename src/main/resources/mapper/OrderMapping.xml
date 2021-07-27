@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kurong.test.dao.OrderDao">
+
+    <select id="getAllOrder" resultType="com.kurong.test.bean.Order">
+        SELECT * FROM orders
+        <if test="sellername!= null">
+            WHERE sellername like #{sellername} or buyername like #{sellername}
+        </if>
+        LIMIT #{pageStart},#{pageSize}
+    </select>
+
+    <select id="getOrderCounts" resultType="java.lang.Integer">
+        SELECT count(*) FROM orders
+        <if test = "sellername != null" >
+            WHERE sellername like #{sellername} or buyername like #{sellername}
+        </if>
+    </select>
+
+    <select id="getOrderMessage" resultType="com.kurong.test.bean.Order">
+        SELECT * FROM orders WHERE
+            item_name=#{item_name} and sellername=#{sellername} and buyername=#{buyername}
+    </select>
+
+    <select id="getUserBoughtOrder" resultType="com.kurong.test.bean.Order">
+        SELECT * FROM orders
+        WHERE buyername=#{buyername}
+    </select>
+
+    <select id="getUserItemBoughtOrder" resultType="com.kurong.test.bean.Order">
+        SELECT * FROM orders
+            WHERE buyername = #{buyername} and sellername like #{sellername}
+    </select>
+
+    <!--    以下是购物车界面点击“结算”按钮需要用到的-->
+    <!--    将购物车中选中的商品加入orders表-->
+    <insert id="addOrder">
+        INSERT INTO orders
+        (sellername,buyername,item_name,fineness,main_kind,sub_kind,price,amount,total,item_img,item_detail)
+            VALUE
+            (#{sellername},#{buyername},#{item_name},#{fineness},#{main_kind},
+            #{sub_kind},#{price},#{amount},#{total},#{item_img},#{item_detail})
+    </insert>
+
+    <!--    将选中的商品从shopcar表中删除-->
+    <delete id="deleteShopCar">
+        DELETE FROM shopcar WHERE item_name=#{item_name} and buyername=#{buyername} and sellername=#{sellername}
+    </delete>
+
+    <!--    以下几条都用来把商品从item表中删除-->
+    <!--    数量相等的直接删除-->
+    <delete id="deleteItem">
+        DELETE FROM item WHERE item_name=#{item_name} and username=#{sellername}
+    </delete>
+
+    <!--    数量小于item中数量的，修改item表-->
+    <update id="updateItemAmount">
+        update item
+        set amount=(amount-#{amount})
+        where item_name=#{item_name} and username=#{sellername}
+    </update>
+
+    <!--    判断结算的商品数量与item表中商品的数量大小关系，返回一个整数类型，具体判断逻辑见OrderController-->
+    <select id="checkAmount" resultType="java.lang.Integer">
+        select amount-#{amount}
+        from item
+        where item_name=#{item_name} and username=#{sellername}
+    </select>
+</mapper>
