@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @RestController
 public class UserController {
@@ -94,5 +93,14 @@ public class UserController {
     public String resetPassWord(@RequestBody User user){
         int i = userdao.resetPassWord(user);
         return i > 0 ? "success" : "error";
+    }
+
+    @RequestMapping("/oneUser")
+    public String getOneUser(@RequestBody User user) {
+        // 获取查询信息
+        User the_user = userdao.checkUsername(user.getUsername());
+        List<User> users = new ArrayList<>();
+        users.add(the_user);
+        return JSON.toJSONString(users);
     }
 }

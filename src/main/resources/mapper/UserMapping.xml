@@ -40,6 +40,11 @@
         username=#{username}
     </select>
 
+    <select id="getPandE" resultType="com.kurong.test.bean.User">
+        SELECT * FROM easyuser WHERE
+            username=#{username} AND phone=#{phone} AND email=#{email} AND `state` = 1
+    </select>
+
     <delete id="deleteUser">
         DELETE FROM easyuser WHERE username=#{username}
     </delete>
@@ -56,4 +61,9 @@
         WHERE username=#{username}
     </update>
 
+    <update id="updateAvatar">
+        UPDATE easyuser
+        SET avatar=#{avatar}
+        WHERE username=#{username}
+    </update>
 </mapper>

@@ -31,4 +31,20 @@ public class LoginController {
         String res_json = JSON.toJSONString(res);
         return res_json;
     }
+
+    @RequestMapping("/ValidPandE")
+    public String validPandE(@RequestBody User user){
+        String flag = "error";
+        User upe = userDao.getPandE(user.getUsername(),user.getPhone(),user.getEmail());
+        HashMap<String,Object> res = new HashMap<>();
+        if(upe != null)
+        {
+            flag = "ok";
+        }
+        res.put("flag",flag);
+        res.put("user",upe);
+        System.out.println("user:"+upe);
+        String res_json = JSON.toJSONString(res);
+        return res_json;
+    }
 }

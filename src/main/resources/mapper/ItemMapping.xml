@@ -45,9 +45,9 @@
 
     <insert id="releaseItem">
         INSERT INTO item
-        (username,item_name,fineness,main_kind,sub_kind,price,amount,comment,contact)
+        (username,item_name,fineness,main_kind,sub_kind,price,amount,comment,contact,item_img)
         VALUE
-        (#{username},#{item_name},#{fineness},#{main_kind},#{sub_kind},#{price},#{amount},#{comment},#{contact})
+        (#{username},#{item_name},#{fineness},#{main_kind},#{sub_kind},#{price},#{amount},#{comment},#{contact},#{item_img})
     </insert>
     
     <delete id="deleteItem">
@@ -59,6 +59,54 @@
         SET item_name=#{item_name}, fineness=#{fineness}, main_kind=#{main_kind}, sub_kind=#{sub_kind}, price=#{price},
             amount=#{amount}, comment=#{comment}
         WHERE item_name=#{item_name}
+    </update>
+
+    <!--以下是shopcar用到的-->
+
+
+    <!--针对登录用户获取shopcar里的所有商品-->
+    <select id="getAllShopCar" resultType="com.kurong.test.bean.ShopCar">
+        SELECT * FROM shopcar
+        WHERE  buyername=#{buyername}
+        ORDER BY item_name
+
+    </select>
+
+    <!--获取该用户购物车中的商品数量-->
+    <select id="getShopCarCounts" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM shopcar
+        WHERE  buyername=#{buyername}
+
+    </select>
+
+    <!--操作：将物品从购物车中删除    -->
+    <delete id="deleteShopCar">
+        DELETE FROM shopcar WHERE item_name=#{item_name} and buyername=#{buyername} and sellername=#{sellername}
+    </delete>
+
+    <!--以下三个是加入购物车要用到的-->
+    <!--insert    -->
+    <insert id="addCart">
+        INSERT INTO shopcar
+        (sellername,buyername,item_name,fineness,main_kind,sub_kind,price,amount,total,item_img,item_detail,isbought)
+            VALUE
+            (#{sellername},#{buyername},#{item_name},#{fineness},#{main_kind},
+            #{sub_kind},#{price},#{amount},#{total},#{item_img},#{item_detail},
+            #{isbought})
+    </insert>
+
+    <!--加入购物车前，判断表中是否存在该商品    -->
+    <select id="checkItem" resultType="com.kurong.test.bean.ShopCar">
+        select * from shopcar
+        where buyername=#{buyername} and item_name=#{item_name} and sellername=#{sellername}
+    </select>
+
+    <!--如果存在，就修改商品数量-->
+    <update id="editShopCar">
+        UPDATE shopcar
+        SET amount=amount+1
+        WHERE item_name=#{item_name} and buyername=#{buyername} and sellername=#{sellername}
     </update>
 
 </mapper>

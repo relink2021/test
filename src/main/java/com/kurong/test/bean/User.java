@@ -14,6 +14,7 @@ public class User {
     private String email;    // 邮箱
     private String role;     // 角色
     private double balance;     // 余额
+    private String avatar; // 头像
     private boolean state = true;   // 状态
 
     public User() {
@@ -26,7 +27,7 @@ public class User {
         this.email = email;
     }
 
-    public User(String username, String password, String real_name, String sex, String address, String phone, String email, String role, double balance, boolean state) {
+    public User(String username, String password, String real_name, String sex, String address, String phone, String email, String role, double balance, String avatar, boolean state) {
         this.username = username;
         this.password = password;
         this.real_name = real_name;
@@ -36,6 +37,7 @@ public class User {
         this.email = email;
         this.role = role;
         this.balance = balance;
+        this.avatar = avatar;
         this.state = state;
     }
 
@@ -119,6 +121,14 @@ public class User {
         this.state = state;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -131,6 +141,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
                 ", balance=" + balance +
+                ", avatar='" + avatar + '\'' +
                 ", state=" + state +
                 '}';
     }
