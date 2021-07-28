@@ -35,7 +35,6 @@ public class UserController {
         user.setRole("普通用户");
         user.setAddress(null);
         user.setReal_name(null);
-        user.setBalance(1000.0);
         user.setSex("男");
         user.setState(true);
         int i = userdao.addUser(user);
@@ -46,7 +45,6 @@ public class UserController {
     public String addUserByAdmin(@RequestBody User user) {
         user.setAddress(null);
         user.setReal_name(null);
-        user.setBalance(1000.0);
         user.setSex("男");
         user.setState(true);
         int i = userdao.addUser(user);
@@ -56,6 +54,12 @@ public class UserController {
     @RequestMapping("/updateMessage")
     public String updateMessage(@RequestBody User user){
         int i = userdao.updateMessage(user);
+        return i > 0 ? "success" : "error";
+    }
+
+    @RequestMapping("/updateState")
+    public String updateState(@RequestBody User user) {
+        int i = userdao.updateState(user);
         return i > 0 ? "success" : "error";
     }
 

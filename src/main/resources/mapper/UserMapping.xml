@@ -20,6 +20,12 @@
         WHERE username=#{username}
     </update>
 
+    <update id="updateState">
+        UPDATE easyuser
+        SET state=#{state}
+        WHERE username=#{username}
+    </update>
+
     <select id="getAllUser" resultType="com.kurong.test.bean.User">
         SELECT * FROM easyuser
         <if test="username != null">

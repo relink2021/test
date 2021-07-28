@@ -16,6 +16,7 @@ public interface UserDao {
     public int getUserCounts(@Param("username") String username);
     public User checkUsername(@Param("username") String username);
     public int updateMessage(User user);
+    public int updateState(User user);
     public int deleteUser(String username);
     public int updateUser(User user);
     public int resetPassWord(User user);

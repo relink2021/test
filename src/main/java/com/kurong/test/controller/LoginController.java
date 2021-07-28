@@ -21,7 +21,7 @@ public class LoginController {
         String flag = "error";
         User us = userDao.getUserByMessage(user.getUsername(),user.getPassword(),user.getRole());
         HashMap<String,Object> res = new HashMap<>();
-        if(us != null)
+        if(us != null && us.getState() == true)
         {
             flag = "ok";
         }
