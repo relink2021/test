@@ -12,10 +12,14 @@ public interface OrderDao {
 
     public List<Order> getAllOrder(@Param("sellername") String sellername, @Param("pageStart") int pageStart, @Param("pageSize") int pageSize);
     public int getOrderCounts(@Param("sellername") String sellername);
-    public Order getOrderMessage(@Param("item_name") String item_name,@Param("sellername") String sellername,@Param("buyername") String buyername);
-    public List<Order> getUserBoughtOrder(@Param("buyername")String buyername);
-    //public int getUserBoughtOrderCounts(@Param("buyername") String buyername);
-    public List<Order> getUserItemBoughtOrder(@Param("buyername")String buyername,@Param("sellername")String sellername);
+    public Order getOrderMessage(@Param("item_name") String item_name,@Param("sellername") String sellername,@Param("buyername") String buyername, @Param("date") String date);
+    // 获取登录用户买到的商品
+    public List<Order> getUserBoughtOrder(@Param("buyername") String buyername, @Param("sellername")String sellername,@Param("pageStart") int pageStart, @Param("pageSize") int pageSize);
+    public int getUserBoughtOrderCounts(@Param("buyername") String buyername, @Param("sellername") String sellername);
+    // 获取登录用户卖出的商品
+    public List<Order> getUserSoldOrder(@Param("sellername")String sellername,@Param("buyername") String buyername,@Param("pageStart") int pageStart, @Param("pageSize") int pageSize);
+    public int getUserSoldOrderCounts(@Param("sellername")String sellername,@Param("buyername") String buyername);
+
     //以下是购物车界面点击“结算”按钮后需要用到的
     public int addOrder(Order order);
     public int deleteShopCar(Order order);

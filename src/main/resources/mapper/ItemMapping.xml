@@ -5,12 +5,32 @@
 
     <select id="getAllItem" resultType="com.kurong.test.bean.Item">
         SELECT * FROM item
-        <if test="item_name != null">
+        <if test="item_name != null and edit == 1">
             <if test="sub_kind != null">
-            WHERE item_name like #{item_name} AND sub_kind =#{sub_kind}
+            WHERE item_name like #{item_name} AND sub_kind =#{sub_kind} AND username!=#{owner}
             </if>
             <if test="sub_kind == null">
-            WHERE item_name like #{item_name}
+            WHERE item_name like #{item_name} AND username!=#{owner}
+            </if>
+            <if test="filter == 0">
+                ORDER BY item_name
+            </if>
+            <if test="filter == 1">
+                ORDER BY price desc
+            </if>
+            <if test="filter == 2">
+                ORDER BY price
+            </if>
+            <if test="filter == 3">
+                ORDER BY amount desc
+            </if>
+        </if>
+        <if test="item_name != null and edit == 2">
+            <if test="sub_kind != null">
+                WHERE item_name like #{item_name} AND sub_kind =#{sub_kind} AND username=#{owner}
+            </if>
+            <if test="sub_kind == null">
+                WHERE item_name like #{item_name} AND username=#{owner}
             </if>
             <if test="filter == 0">
                 ORDER BY item_name
@@ -30,11 +50,21 @@
 
     <select id="getItemCounts" resultType="java.lang.Integer">
         SELECT count(*) FROM item
-        <if test = "sub_kind != null" >
-            WHERE item_name like #{item_name} AND sub_kind =#{sub_kind}
+        <if test = "edit == 1">
+            <if test = "sub_kind != null" >
+                WHERE item_name like #{item_name} AND sub_kind =#{sub_kind} AND username!=#{owner}
+            </if>
+            <if test = "sub_kind == null" >
+                WHERE item_name like #{item_name} AND username!=#{owner}
+            </if>
         </if>
-        <if test = "sub_kind == null" >
-            WHERE item_name like #{item_name}
+        <if test = "edit == 2">
+            <if test = "sub_kind != null" >
+                WHERE item_name like #{item_name} AND sub_kind =#{sub_kind} AND username=#{owner}
+            </if>
+            <if test = "sub_kind == null" >
+                WHERE item_name like #{item_name} AND username=#{owner}
+            </if>
         </if>
     </select>
 

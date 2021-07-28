@@ -3,6 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kurong.test.dao.OrderDao">
 
+    <!-- 管理员获取用户的订单列表-->
     <select id="getAllOrder" resultType="com.kurong.test.bean.Order">
         SELECT * FROM orders
         <if test="sellername!= null">
@@ -11,6 +12,7 @@
         LIMIT #{pageStart},#{pageSize}
     </select>
 
+    <!-- 获取用户的订单列表数量（分页用）-->
     <select id="getOrderCounts" resultType="java.lang.Integer">
         SELECT count(*) FROM orders
         <if test = "sellername != null" >
@@ -18,19 +20,46 @@
         </if>
     </select>
 
+    <!-- 获取用户的订单详情-->
     <select id="getOrderMessage" resultType="com.kurong.test.bean.Order">
         SELECT * FROM orders WHERE
-            item_name=#{item_name} and sellername=#{sellername} and buyername=#{buyername}
+            item_name=#{item_name} and sellername=#{sellername} and buyername=#{buyername} and date=#{date}
     </select>
 
+<!--    获取用户已买到的商品并查询-->
     <select id="getUserBoughtOrder" resultType="com.kurong.test.bean.Order">
         SELECT * FROM orders
-        WHERE buyername=#{buyername}
+        WHERE buyername=#{buyername} and sellername like #{sellername}
+            LIMIT #{pageStart},#{pageSize}
     </select>
 
-    <select id="getUserItemBoughtOrder" resultType="com.kurong.test.bean.Order">
+<!--    获取用户已买到的商品数量-->
+    <select id="getUserBoughtOrderCounts" resultType="java.lang.Integer">
+        select count(*)
+        from orders
+        where buyername=#{buyername} and sellername like #{sellername}
+    </select>
+
+<!--获取用户已卖出的商品并查询-->
+    <select id="getUserSoldOrder" resultType="com.kurong.test.bean.Order">
         SELECT * FROM orders
-            WHERE buyername = #{buyername} and sellername like #{sellername}
+        WHERE sellername=#{sellername} and buyername like #{buyername}
+            LIMIT #{pageStart},#{pageSize}
+    </select>
+
+<!--    获取用户已卖出的商品数量-->
+    <select id="getUserSoldOrderCounts" resultType="java.lang.Integer">
+        SELECT count(*) FROM orders
+        WHERE sellername=#{sellername} and buyername like #{buyername}
+    </select>
+
+<!--    获取某用户已买到的物品，根据sellername查询-->
+    <select id="getBoughtOrder" resultType="com.kurong.test.bean.Order">
+        SELECT * FROM orders
+        <if test="sellername!= null">
+            WHERE sellername like #{sellername}
+        </if>
+        LIMIT #{pageStart},#{pageSize}
     </select>
 
     <!--    以下是购物车界面点击“结算”按钮需要用到的-->

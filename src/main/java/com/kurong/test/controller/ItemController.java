@@ -20,10 +20,10 @@ public class ItemController {
     @RequestMapping("/allItem")
     public String getItemList(QueryInfo queryInfo) {
         // 获取查询信息
-        int number = itemdao.getItemCounts("%" + queryInfo.getQuery() + "%", queryInfo.getType());
+        int number = itemdao.getItemCounts("%" + queryInfo.getQuery() + "%", queryInfo.getType(), queryInfo.getOwner(), queryInfo.getEdit());
         int pageStart = (queryInfo.getPageNum() - 1) * queryInfo.getPageSize();
 
-        List<Item> items = itemdao.getAllItem("%" + queryInfo.getQuery() + "%", queryInfo.getType(), pageStart, queryInfo.getPageSize(), queryInfo.getFilter());
+        List<Item> items = itemdao.getAllItem("%" + queryInfo.getQuery() + "%", queryInfo.getType(), pageStart, queryInfo.getPageSize(), queryInfo.getFilter(), queryInfo.getOwner(), queryInfo.getEdit());
         System.out.println(items.size());
         HashMap<String, Object> res = new HashMap<>();
         res.put("number", number);
