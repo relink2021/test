@@ -1,5 +1,7 @@
 package com.kurong.test.bean;
 
+import java.util.Date;
+
 public class Order {
     private String sellername;
     private String buyername;
@@ -12,11 +14,12 @@ public class Order {
     private double total;
     private String item_img;
     private String item_detail;
+    private String date;
 
     public Order() {
     }
 
-    public Order(String sellername, String buyername, String item_name, String fineness, String main_kind, String sub_kind, double price, int amount, double total, String item_img, String item_detail) {
+    public Order(String sellername, String buyername, String item_name, String fineness, String main_kind, String sub_kind, double price, int amount, double total, String item_img, String item_detail, String date) {
         this.sellername = sellername;
         this.buyername = buyername;
         this.item_name = item_name;
@@ -28,6 +31,7 @@ public class Order {
         this.total = total;
         this.item_img = item_img;
         this.item_detail = item_detail;
+        this.date = date;
     }
 
     public String getSellername() {
@@ -118,6 +122,14 @@ public class Order {
         this.item_detail = item_detail;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -132,6 +144,7 @@ public class Order {
                 ", total=" + total +
                 ", item_img='" + item_img + '\'' +
                 ", item_detail='" + item_detail + '\'' +
+                ", date='" + date + '\'' +
                 '}';
     }
 }

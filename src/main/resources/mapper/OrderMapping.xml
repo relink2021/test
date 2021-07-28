@@ -37,10 +37,10 @@
     <!--    将购物车中选中的商品加入orders表-->
     <insert id="addOrder">
         INSERT INTO orders
-        (sellername,buyername,item_name,fineness,main_kind,sub_kind,price,amount,total,item_img,item_detail)
+        (sellername,buyername,item_name,fineness,main_kind,sub_kind,price,amount,total,item_img,item_detail,date)
             VALUE
             (#{sellername},#{buyername},#{item_name},#{fineness},#{main_kind},
-            #{sub_kind},#{price},#{amount},#{total},#{item_img},#{item_detail})
+            #{sub_kind},#{price},#{amount},#{total},#{item_img},#{item_detail},#{date})
     </insert>
 
     <!--    将选中的商品从shopcar表中删除-->
