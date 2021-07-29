@@ -1,14 +1,24 @@
 package com.kurong.test.bean;
 
+// 查询筛选条件
 public class QueryInfo {
-    private String query; // 查询信息 username
-    private String type;  // 当前种类 sub_kind
+    private String query; // 输入框查询信息
+    private String type;  // 当前商品的副类
     private int pageNum = 1; // 当前页
     private int pageSize = 10; // 每页最大数
-    private int filter = 0;  // 筛选条件 0表示按商品名称排序
-    private String buyername;
-    private String owner;
+    private int filter = 0;
+    /** 商品筛选条件
+     *  0表示按商品名称升序排列
+     *  1表示按商品单价降序排列
+     *  2表示按商品单价升序排列
+     *  3表示按商品数量降序排列
+     */
+    private String buyername;  // 当前买家名称
+    private String owner;  // 当前用户名称
     private int edit;
+    /** 1表示商城主页，不会显示自己发布的商品
+     *  2表示修改发布页面，只会显示自己发布的商品
+     */
 
     public QueryInfo() {
     }

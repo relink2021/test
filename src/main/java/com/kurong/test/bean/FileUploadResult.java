@@ -3,6 +3,7 @@ package com.kurong.test.bean;
 import lombok.Data;
 
 @Data
+//图片上传OSS的返回结果，实际并未用到
 public class FileUploadResult {
     // 文件唯一标识
     private String uid;

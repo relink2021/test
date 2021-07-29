@@ -1,20 +1,22 @@
 package com.kurong.test.bean;
 
-/*
- * 用户实体
- */
+// 用户实体
 public class User {
 
-    private String username; // 用户名
-    private String password; // 密码
-    private String real_name; // 真实姓名
-    private String sex;     // 性别
-    private String address;  // 地址
-    private String phone;    // 手机
-    private String email;    // 邮箱
-    private String role;     // 角色
-    private String avatar; // 头像
-    private boolean state = true;   // 状态
+    private String username;       // 用户名
+    private String password;       // 密码
+    private String real_name;      // 真实姓名
+    private String sex;            // 性别
+    private String address;        // 地址
+    private String phone;          // 手机
+    private String email;          // 邮箱
+    private String role;           // 角色
+    private String avatar;         // 头像
+    private boolean state = true;
+    /** 用户状态state
+     *  true表示激活状态，可以登录
+     *  false表示注销状态，不可以登录
+     */
 
     public User() {
     }

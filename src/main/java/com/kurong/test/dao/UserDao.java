@@ -20,5 +20,4 @@ public interface UserDao {
     public int deleteUser(String username);
     public int updateUser(User user);
     public int resetPassWord(User user);
-    public int updateAvatar(User user);
 }

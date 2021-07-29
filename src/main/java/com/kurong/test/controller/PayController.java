@@ -33,7 +33,6 @@ public class PayController {
         order.setSubject(subject);
         order.setTotal_amount(totalAmount);
         order.setDescription(description);
-        System.out.println(order);
         return aliPayService.aliPay(order);
     }
 }

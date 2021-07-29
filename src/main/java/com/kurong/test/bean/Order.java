@@ -2,19 +2,20 @@ package com.kurong.test.bean;
 
 import java.util.Date;
 
+// 订单类
 public class Order {
-    private String sellername;
-    private String buyername;
-    private String item_name;
-    private String fineness;
-    private String main_kind;
-    private String sub_kind;
-    private double price;
-    private int amount;
-    private double total;
-    private String item_img;
-    private String item_detail;
-    private String date;
+    private String sellername;  // 卖家信息
+    private String buyername;   // 买家信息
+    private String item_name;   // 商品名称
+    private String fineness;    // 成色
+    private String main_kind;   // 主类
+    private String sub_kind;    // 副类
+    private double price;       // 单价
+    private int amount;         // 数量
+    private double total;       // 总价
+    private String item_img;    // 商品图片url
+    private String item_detail; // 商品详情
+    private String date;        // 成交日期
 
     public Order() {
     }

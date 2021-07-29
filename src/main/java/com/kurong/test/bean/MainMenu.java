@@ -1,12 +1,12 @@
 package com.kurong.test.bean;
 
 import java.util.List;
-// 主导航
+// 商品页分类主导航栏
 public class MainMenu {
-    private int id;
-    private String title;
-    private String path;
-    private List<SubMenu> sList;
+    private int id;               // 导航栏ID
+    private String title;         // 标题名称
+    private String path;          // 标题对应路径
+    private List<SubMenu> sList;  // 子导航栏
 
     public MainMenu() {
     }

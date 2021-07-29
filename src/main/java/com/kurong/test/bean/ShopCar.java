@@ -1,18 +1,19 @@
 package com.kurong.test.bean;
 
+// 购物车类
 public class ShopCar {
-    private String sellername;
-    private String buyername;
-    private String item_name;
-    private String fineness;
-    private String main_kind;
-    private String sub_kind;
-    private double price;
-    private int amount;
-    private double total;
-    private String item_img;
-    private String item_detail;
-    private boolean isbought;
+    private String sellername;  // 卖家
+    private String buyername;   // 买家
+    private String item_name;   // 商品名
+    private String fineness;    // 成色
+    private String main_kind;   // 主类
+    private String sub_kind;    // 副类
+    private double price;       // 单价
+    private int amount;         // 数量
+    private double total;       // 总价
+    private String item_img;    // 商品图片
+    private String item_detail; // 商品详情
+    private boolean isbought;   // 是否付款(实际并未用到)
 
     public ShopCar() {
     }

@@ -12,7 +12,13 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:aliyun.properties")
 @ConfigurationProperties(prefix = "aliyun")
 @Data
+// 阿里云OSS配置类
 public class Aliconfig {
+    /**
+     *  endPoint为后缀名
+     *  accessKeyId和accessKeySecret是阿里云上注册的通行码
+     *  bucketName是OSS存储图片的桶名
+     */
     private String endpoint;
     private String accessKeyId;
     private String accessKeySecret;

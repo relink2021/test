@@ -24,7 +24,6 @@ public class ItemController {
         int pageStart = (queryInfo.getPageNum() - 1) * queryInfo.getPageSize();
 
         List<Item> items = itemdao.getAllItem("%" + queryInfo.getQuery() + "%", queryInfo.getType(), pageStart, queryInfo.getPageSize(), queryInfo.getFilter(), queryInfo.getOwner(), queryInfo.getEdit());
-        System.out.println(items.size());
         HashMap<String, Object> res = new HashMap<>();
         res.put("number", number);
         res.put("data", items);

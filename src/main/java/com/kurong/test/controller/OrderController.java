@@ -28,7 +28,6 @@ public class OrderController {
         int number = orderdao.getOrderCounts("%" + queryInfo.getQuery() + "%");
         int pageStart = (queryInfo.getPageNum() - 1) * queryInfo.getPageSize();
         List<Order> orders = orderdao.getAllOrder("%" + queryInfo.getQuery() + "%", pageStart, queryInfo.getPageSize());
-        System.out.println(orders);
         for(Order order1:orders)
         {
             order1.setTotal(order1.getPrice()*order1.getAmount());
@@ -43,10 +42,6 @@ public class OrderController {
     @RequestMapping("/allBoughtOrder")
     public String getUserOrderList(@RequestBody QueryInfo queryInfo) {
 
-        //queryInfo.setBuyername("12345");
-        System.out.println("调用函数");
-        System.out.println(queryInfo);
-        System.out.println("传进来的用户名："+queryInfo.getBuyername());
         int pageStart = (queryInfo.getPageNum() - 1) * queryInfo.getPageSize();
         List<Order> orders=orderdao.getUserBoughtOrder(queryInfo.getBuyername(),"%"+queryInfo.getQuery()+"%",pageStart, queryInfo.getPageSize());
 
@@ -61,11 +56,6 @@ public class OrderController {
     //用户获取已卖出的订单信息
     @RequestMapping("/allSoldOrder")
     public String getUserSoldList(@RequestBody QueryInfo queryInfo) {
-
-        //queryInfo.setBuyername("12345");
-        System.out.println("调用函数");
-        System.out.println(queryInfo);
-        System.out.println("传进来的用户名："+queryInfo.getBuyername());
         int pageStart = (queryInfo.getPageNum() - 1) * queryInfo.getPageSize();
 
         List<Order> orders=orderdao.getUserSoldOrder(queryInfo.getBuyername(),"%"+queryInfo.getQuery()+"%",pageStart, queryInfo.getPageSize());
@@ -87,25 +77,6 @@ public class OrderController {
         return JSON.toJSONString(orders);
     }
 
-//    @RequestMapping("/showUserBoughtOrder")
-//    public String showUserBoughtOrder(@RequestBody Order order)
-//    {
-//        List<Order> bought_orders = orderdao.getUserBoughtOrder(order.getBuyername());
-//        HashMap<String, Object> res = new HashMap<>();
-//        res.put("data", bought_orders);
-//        return JSON.toJSONString(res);
-//    }
-
-//    @RequestMapping("/searchUserItemBoughtOrder")
-//    public String searchUserItemBoughtOrder(@RequestBody Order order)
-//    {
-//        List<Order> bought_item_orders = orderdao.getUserItemBoughtOrder(order.getBuyername(),"%"+order.getSellername()+"%");
-//        HashMap<String, Object> res = new HashMap<>();
-//        System.out.println(bought_item_orders);
-//        res.put("data", bought_item_orders);
-//        return JSON.toJSONString(res);
-//    }
-
     //以下是购物车界面点击“结算”按钮后需要用到的
     //选中商品加入订单,跟加入购物车不同的是没有查重判断……
     @RequestMapping("/addOrder")
@@ -126,15 +97,16 @@ public class OrderController {
         //循环
         for(Order cur_order:orders)
         {
-            orderdao.deleteShopCar(cur_order);//从购物车中删除
             int item_sub_car = orderdao.checkAmount(cur_order);//item_sub_car是item表中该商品的数量与cur_order商品的数量之差
 
             if (item_sub_car==0)
             {
+                orderdao.deleteShopCar(cur_order);//从购物车中删除
                 orderdao.deleteItem(cur_order);//从item中删除该商品
             }
             else if (item_sub_car>0)
             {
+                orderdao.deleteShopCar(cur_order);//从购物车中删除
                 orderdao.updateItemAmount(cur_order);//从item中减掉交易的商品数量
             }
             else  return "error";//只要有一个商品的库存不足，就退出循环，返回error

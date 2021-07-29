@@ -1,9 +1,9 @@
 package com.kurong.test.bean;
 // 分支导航
 public class SubMenu {
-    private int id;
-    private String title;
-    private String path;
+    private int id;       // 导航ID
+    private String title; // 导航标题
+    private String path;  // 导航路径
 
     public SubMenu() {
     }

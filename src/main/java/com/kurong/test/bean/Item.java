@@ -2,16 +2,16 @@ package com.kurong.test.bean;
 
 // 商品信息
 public class Item {
-    private String username;
-    private String item_name;
-    private String fineness;
-    private String main_kind;
-    private String sub_kind;
-    private double price;
-    private int amount;
-    private String item_detail;
-    private String contact;
-    private String item_img;
+    private String username;     // 发布者
+    private String item_name;    // 商品名
+    private String fineness;     // 成色
+    private String main_kind;    // 主类
+    private String sub_kind;     // 副类
+    private double price;        // 单价
+    private int amount;          // 数量
+    private String item_detail;  // 详情
+    private String contact;      // 卖家联系方式
+    private String item_img;     // 商品图片url
 
     public Item() {
     }
