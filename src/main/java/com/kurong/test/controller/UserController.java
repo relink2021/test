@@ -37,6 +37,7 @@ public class UserController {
         user.setReal_name(null);
         user.setSex("男");
         user.setState(true);
+        user.setAvatar("https://relink-upload.oss-cn-beijing.aliyuncs.com/images/2021/07/29/16275258611693862.jpg");
         int i = userdao.addUser(user);
         return i > 0 ? "success" : "error";
     }
@@ -47,6 +48,7 @@ public class UserController {
         user.setReal_name(null);
         user.setSex("男");
         user.setState(true);
+        user.setAvatar("https://relink-upload.oss-cn-beijing.aliyuncs.com/images/2021/07/29/16275258611693862.jpg");
         int i = userdao.addUser(user);
         return i > 0 ? "success" : "error";
     }

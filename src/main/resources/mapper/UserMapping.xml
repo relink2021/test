@@ -9,14 +9,14 @@
 
     <insert id="addUser">
         INSERT INTO easyuser
-        (username,password,real_name,sex,phone,email,balance,address,role,state)
+        (username,password,real_name,sex,phone,email,address,role,state,avatar)
         VALUE
-        (#{username},#{password},#{real_name},#{sex},#{phone},#{email},#{balance},#{address},#{role},#{state})
+        (#{username},#{password},#{real_name},#{sex},#{phone},#{email},#{address},#{role},#{state},#{avatar})
     </insert>
 
     <update id="updateMessage">
         UPDATE easyuser
-        SET real_name=#{real_name},sex=#{sex},email=#{email},phone=#{phone},address=#{address}
+        SET real_name=#{real_name},sex=#{sex},email=#{email},phone=#{phone},address=#{address},avatar=#{avatar}
         WHERE username=#{username}
     </update>
 
@@ -57,7 +57,7 @@
 
     <update id="updateUser">
         UPDATE easyuser
-        SET password=#{password}, phone=#{phone}, email=#{email}, role=#{role}, balance=#{balance}
+        SET phone=#{phone}, email=#{email}, role=#{role}
         WHERE username=#{username}
     </update>
 
