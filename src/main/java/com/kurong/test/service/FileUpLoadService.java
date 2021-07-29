@@ -68,7 +68,6 @@ public class FileUpLoadService {
         fileUploadResult.setResponse("success");
         // this.aliyunConfig.getUrlPrefix() + filePath 文件路径需要保存到数据库
         fileUploadResult.setName(this.aliyunConfig.getUrlPrefix() + filePath);
-        System.out.println(this.aliyunConfig.getUrlPrefix() + filePath);
         return this.aliyunConfig.getUrlPrefix() + "/" + filePath;
     }
 
