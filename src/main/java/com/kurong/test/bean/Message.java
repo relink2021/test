@@ -5,18 +5,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * 信息体
- * sender: 发送方
- * receiver: 接收方
- * message: 消息内容
- */
+import java.util.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class MessageBody {
+public class Message {
+    private int message_id;
     private String sender;
     private String receiver;
     private String message;
+    private Date timestamp;
 }

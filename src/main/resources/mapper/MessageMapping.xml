@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kurong.test.dao.MessageDao">
+
+    <insert id="addMessage">
+        INSERT INTO message
+        (message_id, sender, message, receiver, timestamp)
+            VALUE
+        (#{message_id}, #{sender}, #{message} ,#{receiver}, #{timestamp})
+    </insert>
+
+    <select id="loadMessage" resultType="com.kurong.test.bean.Message">
+        SELECT * FROM message
+        WHERE (sender=#{self} and receiver=#{chatter}) or (sender=#{chatter} and receiver=#{self})
+    </select>
+
+    <select id="loadMessagePlus" resultType="com.kurong.test.bean.Message">
+        SELECT * FROM message
+        WHERE receiver=#{chatter}
+    </select>
+
+</mapper>

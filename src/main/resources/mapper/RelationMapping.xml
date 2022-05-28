@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kurong.test.dao.RelationDao">
+
+    <select id="getAllRelation" resultType="com.kurong.test.bean.Relation">
+        SELECT * FROM relation
+        WHERE first=#{username} or second=#{username}
+    </select>
+
+</mapper>
