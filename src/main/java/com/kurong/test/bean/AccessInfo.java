@@ -5,18 +5,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
-
+/**
+ * 好友验证表单
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Message {
-    private int message_id;
+public class AccessInfo {
+    private int access_id;
     private String sender;
     private String receiver;
     private String message;
-    private Date timestamp;
-    private int type; // 0为聊天记录，1为文件
-    private String file_url; // 文件存储url
+    private int access;
 }

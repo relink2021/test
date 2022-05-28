@@ -5,9 +5,9 @@
 
     <insert id="addMessage">
         INSERT INTO message
-        (message_id, sender, message, receiver, timestamp)
+        (message_id, sender, message, receiver, timestamp, type, file_url)
             VALUE
-        (#{message_id}, #{sender}, #{message} ,#{receiver}, #{timestamp})
+        (#{message_id}, #{sender}, #{message} ,#{receiver}, #{timestamp}, #{type}, #{file_url})
     </insert>
 
     <select id="loadMessage" resultType="com.kurong.test.bean.Message">

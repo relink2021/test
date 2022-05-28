@@ -8,4 +8,34 @@
         WHERE first=#{username} or second=#{username}
     </select>
 
+    <select id="getAllAccess" resultType="com.kurong.test.bean.AccessInfo">
+        SELECT * FROM access
+        WHERE receiver=#{username}
+    </select>
+
+    <update id="agreeAccess">
+        UPDATE access
+        set access=1
+        WHERE receiver=#{self} and sender=#{other}
+    </update>
+
+    <update id="refuseAccess">
+        UPDATE access
+        set access=-1
+        WHERE receiver=#{self} and sender=#{other}
+    </update>
+
+    <insert id="addRelation">
+        INSERT INTO relation
+        (relation_id, first, second)
+            VALUE
+        (#{relation_id}, #{first}, #{second})
+    </insert>
+
+    <insert id="addAccess">
+        INSERT INTO access
+        (access_id, sender, receiver, message, access)
+            VALUE
+        (#{access_id}, #{sender}, #{receiver}, #{message}, #{access})
+    </insert>
 </mapper>

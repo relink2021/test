@@ -44,6 +44,7 @@ public class FileUpLoadService {
                 break;
             }
         }
+        isLegal = true;
         //封装Result对象，并且将文件的byte数组放置到result对象中
         FileUploadResult fileUploadResult = new FileUploadResult();
         if (!isLegal) {
