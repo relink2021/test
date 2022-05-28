@@ -17,7 +17,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
          * 5. 最大时间
          */
         registry.addMapping("/**")
-                .allowedOrigins("Http://localhost:8080","null")
+                .allowedOrigins("Http://localhost:8080",null)
                 .allowedMethods("GET","POST","PUT","OPTIONS","DELETE")
                 .allowCredentials(true)
                 .maxAge(3600);

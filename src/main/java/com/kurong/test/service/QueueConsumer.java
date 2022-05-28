@@ -12,15 +12,15 @@ import javax.jms.TextMessage;
 @Component
 public class QueueConsumer {
 
-    @JmsListener(destination = "all")
-    public void receiveMessage(Message message){
-        if(message instanceof TextMessage){
-            TextMessage textMessage = (TextMessage)message;
-            try {
-                System.out.println("接收消息："+textMessage.getText());
-            } catch (JMSException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+//    @JmsListener(destination = "all")
+//    public void receiveMessage(Message message){
+//        if(message instanceof TextMessage){
+//            TextMessage textMessage = (TextMessage)message;
+//            try {
+//                System.out.println("接收消息："+textMessage.getText());
+//            } catch (JMSException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 }
